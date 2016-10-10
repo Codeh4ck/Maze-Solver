@@ -19,4 +19,21 @@ A project demonstrating the solution of maze matrixes using the Breadth-first se
 # Desclaimer
 This project has been written fully by me, **Nikolas Andreou** (*Delirium*), a Greek C# programmer. The reason I wrote this example is for a programming challenge for the **Alliance for Digital Employability 1st Coding Bootcamp of Athens** and the **e-Travel** company. If you have any questions, feedback, suggestions, bug report, feel free to create an issue or even contact me at deliriumghs@hotmail.gr
 
-Happy maze solving and learning!
+# Screenshots
+
+* **Manual maze builder and the solution path**
+
+![Imgur](http://i.imgur.com/aE43nA9.png)
+
+
+* **Maze loaded from file (Green marks the entrance, Red marks the exit)**
+
+![Imgur](http://i.imgur.com/26jDwUl.png)
+
+
+* **Maze loaded from file with the solution included (also in text form)**
+
+![Imgur](http://i.imgur.com/RKnrAEa.png)
+
+
+_**Happy maze solving and learning!**_
