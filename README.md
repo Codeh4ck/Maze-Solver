@@ -7,6 +7,7 @@ A project demonstrating the solution of maze matrixes using the Breadth-first se
 * Node number is related to its coordinates (x = NodeNumber / MatrixColumns, y = NodeNumber - NodeNumber / MatrixColumns * MatrixColumns)
 * Breadth-first algorithm determines the shortest path to the exit.
 * Determines whether there is an exit or not.
+* You can design your own maze (add walls) and click-drag to find the shortest path to your exit point.
 * Can load example/pre-defined mazes from files (the maze blueprint file is in the form of numbers separated by commas)
 * Numbers in the file indicate tile type (0 = Walkable Tile, 1 = Entrance, 2 = Exit, 3 = Wall)
 * Visual presentation of the map, including walls, entrance & exit (if loaded from file) and the shortest exit path (if there is one)
