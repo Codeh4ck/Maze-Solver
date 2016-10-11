@@ -1,5 +1,5 @@
 # Maze Solver
-A project demonstrating the solution of maze matrixes using the Breadth-first search algorithm.
+A project demonstrating the solution of maze matrixes using the Breadth-first search algorithm. This project is a solution to the challenge given by the **AFDEmp (Alliance for Digital Employability) 1st Coding Bootcamp of Athens**.
 
 # Project features
 * Treats mazes as block matrixes (x, y coordinates - 2D integer array)
@@ -17,7 +17,7 @@ A project demonstrating the solution of maze matrixes using the Breadth-first se
 * Friendly, open-minded coder that will listen to your questions / feedback or inquiries.
 
 # Disclaimer
-This project has been written fully by me, **Nikolas Andreou** (*Delirium*), a Greek C# programmer. The reason I wrote this example is for a programming challenge for the **Alliance for Digital Employability 1st Coding Bootcamp of Athens** and the **e-Travel** company. If you have any questions, feedback, suggestions, bug report, feel free to create an issue or even contact me at deliriumghs@hotmail.gr
+This project has been written fully by me, **Nikolas Andreou** (*Delirium*), a Greek C# programmer. The reason I wrote this example is for a programming challenge for the **Alliance for Digital Employability 1st Coding Bootcamp of Athens**. If you have any questions, feedback, suggestions, bug report, feel free to create an issue or even contact me at deliriumghs@hotmail.gr
 
 # Screenshots
 
