@@ -1,9 +1,0 @@
-c:\users\delirium\documents\visual studio 2015\Projects\MazeSolver\MazeSolver\bin\Debug\MazeSolver.exe.config
-c:\users\delirium\documents\visual studio 2015\Projects\MazeSolver\MazeSolver\bin\Debug\MazeSolver.exe
-c:\users\delirium\documents\visual studio 2015\Projects\MazeSolver\MazeSolver\bin\Debug\MazeSolver.pdb
-c:\users\delirium\documents\visual studio 2015\Projects\MazeSolver\MazeSolver\obj\Debug\MazeSolver.Properties.Resources.resources
-c:\users\delirium\documents\visual studio 2015\Projects\MazeSolver\MazeSolver\obj\Debug\MazeSolver.csproj.GenerateResource.Cache
-c:\users\delirium\documents\visual studio 2015\Projects\MazeSolver\MazeSolver\obj\Debug\MazeSolver.exe
-c:\users\delirium\documents\visual studio 2015\Projects\MazeSolver\MazeSolver\obj\Debug\MazeSolver.pdb
-C:\Users\Delirium\documents\visual studio 2015\Projects\MazeSolver\MazeSolver\obj\Debug\MazeSolver.Forms.FrmMain.resources
-C:\Users\Delirium\documents\visual studio 2015\Projects\MazeSolver\MazeSolver\obj\Debug\MazeSolver.Forms.FrmHelp.resources
