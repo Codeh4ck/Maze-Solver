@@ -18,16 +18,6 @@ namespace MazeSolver.MazeComponents
         public Point ExitCoordinates { get; set; }
 
         /// <summary>
-        /// Creates a solver for the maze blueprint contained in a text file.
-        /// </summary>
-        /// <param name="fileName">The text file containing the maze blueprint.</param>
-        /// <returns>A <see cref="Solver"/> instance for the maze loaded.</returns>
-        public Solver LoadMazeFromFile(string fileName)
-        {
-            return new Solver(LoadCoordinatesFromFile(fileName));
-        }
-
-        /// <summary>
         /// Loads the maze matrix from the maze blueprint contained in the text file.
         /// </summary>
         /// <param name="fileName">The text file containing the maze blueprint.</param>
