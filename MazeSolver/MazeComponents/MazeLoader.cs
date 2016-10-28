@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
+﻿using System.Drawing;
 using MazeSolver.MazeComponents.Interfaces;
 
 namespace MazeSolver.MazeComponents
@@ -23,9 +20,15 @@ namespace MazeSolver.MazeComponents
         /// </summary>
         private IMazeValidator MazeValidator { get; set; }
 
+        /// <summary>
+        /// Used to read the maze file and 
+        /// </summary>
+        private IMazeReader MazeReader { get; set; }
+
         public MazeLoader()
         {
             MazeValidator = new MazeValidator();
+            MazeReader = new MazeReader();
         }
 
         /// <summary>
@@ -37,36 +40,13 @@ namespace MazeSolver.MazeComponents
         {
             MazeValidator.ValidateMazeFile(fileName);
 
-            int Rows = 0;
-            int Columns = 0;
+            var parts = MazeReader.ReadMaze(fileName);
 
-            string Line = string.Empty;
+            int[,] Maze = new int[parts.Rows, parts.Columns];
 
-            List<string> Lines = new List<string>();
-
-            using (StreamReader Reader = new StreamReader(fileName))
+            for (int x = 0; x < parts.Rows; x++)
             {
-                while ((Line = Reader.ReadLine()) != null)
-                {
-                    string[] LineParts = Line.Split(',');
-
-                    if (Columns == 0)
-                        Columns = LineParts.Length;
-                    else
-                    {
-                        if (Columns != LineParts.Length)
-                            throw new Exception("The maze file appears to be corrupt. One of the lines has more/less elements than the previous one.");
-                    }
-                    Lines.Add(Line);
-                    Rows++;
-                }                
-            }
-
-            int[,] Maze = new int[Rows, Columns];
-
-            for (int x = 0; x < Rows; x++)
-            {
-                string[] LineParts = Lines[x].Split(',');
+                string[] LineParts = parts.Lines[x].Split(',');
                 for (int y = 0; y < LineParts.Length; y++)
                 {
                     int NodeStatus;
