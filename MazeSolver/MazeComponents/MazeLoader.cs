@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using MazeSolver.MazeComponents.Interfaces;
 
 namespace MazeSolver.MazeComponents
 {
@@ -18,6 +19,16 @@ namespace MazeSolver.MazeComponents
         public Point ExitCoordinates { get; set; }
 
         /// <summary>
+        /// Used to validate the maze file and its contents.
+        /// </summary>
+        private IMazeValidator MazeValidator { get; set; }
+
+        public MazeLoader()
+        {
+            MazeValidator = new MazeValidator();
+        }
+
+        /// <summary>
         /// Loads the maze matrix from the maze blueprint contained in the text file.
         /// </summary>
         /// <param name="fileName">The text file containing the maze blueprint.</param>
@@ -27,7 +38,7 @@ namespace MazeSolver.MazeComponents
             if (!File.Exists(fileName))
                 throw new IOException("The maze file you are trying to load does not exist.");
 
-            if (!ValidateMazeFile(fileName))
+            if (!MazeValidator.ValidateMazeFile(fileName))
                 throw new IOException("The maze file contains no entrance or exit point. Both points must be set.");
 
             int Rows = 0;
@@ -83,24 +94,6 @@ namespace MazeSolver.MazeComponents
             }
 
             return Maze;
-        }
-
-        /// <summary>
-        /// Checks whetherh the maze blueprint in the <see cref="filePath"/>
-        /// contains an entrance and an exit.
-        /// </summary>
-        /// <param name="filePath">The text file containing the maze blueprint.</param>
-        /// <returns>True if the maze blueprint contains an ex</returns>
-        private bool ValidateMazeFile(string filePath)
-        {
-            if (!File.Exists(filePath))
-                throw new IOException("The maze file you are trying to load does not exist.");
-
-            string MazeFileText = File.ReadAllText(filePath);
-
-
-            return MazeFileText.Contains(Settings.MAZE_ENTRANCE_CODE.ToString()) &&
-                MazeFileText.Contains(Settings.MAZE_EXIT_CODE.ToString());
         }
     }
 }
