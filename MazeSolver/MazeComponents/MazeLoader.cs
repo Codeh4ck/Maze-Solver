@@ -35,8 +35,7 @@ namespace MazeSolver.MazeComponents
         /// <returns>A 2D integer array containing the matrix of the maze.</returns>
         public int[,] LoadCoordinatesFromFile(string fileName)
         {
-            if (!MazeValidator.ValidateMazeFile(fileName))
-                throw new IOException("The maze file contains no entrance or exit point. Both points must be set.");
+            MazeValidator.ValidateMazeFile(fileName);
 
             int Rows = 0;
             int Columns = 0;

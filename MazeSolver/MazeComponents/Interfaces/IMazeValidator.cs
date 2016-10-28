@@ -2,6 +2,6 @@
 {
     public interface IMazeValidator
     {
-        bool ValidateMazeFile(string filePath);
+        void ValidateMazeFile(string filePath);
     }
 }

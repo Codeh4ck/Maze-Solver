@@ -10,18 +10,17 @@ namespace MazeSolver.MazeComponents
         /// contains an entrance and an exit.
         /// </summary>
         /// <param name="filePath">The text file containing the maze blueprint.</param>
-        /// <returns>True if the maze blueprint contains an ex</returns>
-        public bool ValidateMazeFile(string filePath)
+        public void ValidateMazeFile(string filePath)
         {
             {
                 if (!File.Exists(filePath))
                     throw new IOException("The maze file you are trying to load does not exist.");
 
-                string MazeFileText = File.ReadAllText(filePath);
+                var txt = File.ReadAllText(filePath);
 
-
-                return MazeFileText.Contains(Settings.MAZE_ENTRANCE_CODE.ToString()) &&
-                    MazeFileText.Contains(Settings.MAZE_EXIT_CODE.ToString());
+                if (!txt.Contains(Settings.MAZE_ENTRANCE_CODE.ToString()) ||
+                    !txt.Contains(Settings.MAZE_EXIT_CODE.ToString()))
+                    throw new IOException("The maze file contains no entrance or exit point. Both points must be set.");
             }
         }
     }
