@@ -18,15 +18,22 @@ namespace MazeSolver.MazeComponents
         /// <summary>
         /// Used to validate the maze file and its contents.
         /// </summary>
-        private IMazeValidator MazeValidator { get; set; }
+        internal IMazeValidator MazeValidator { get; set; }
 
         /// <summary>
         /// Used to read the maze file and 
         /// </summary>
-        private IMazeReader MazeReader { get; set; }
+        internal IMazeReader MazeReader { get; set; }
 
-        public MazeLoader()
+        /// <summary>
+        /// Initializes the loader - must be called after object creation.
+        /// </summary>
+        public void InitializeLoader()
         {
+            /* Creating the validator and reader instances here, which is shockingly bad.
+             * This is done to prevent automatic instantiation of them in the constructor
+             * in order to unit-test the loader. This gruesome hack is not necessary
+             * if a DI framework is used. */
             MazeValidator = new MazeValidator();
             MazeReader = new MazeReader();
         }

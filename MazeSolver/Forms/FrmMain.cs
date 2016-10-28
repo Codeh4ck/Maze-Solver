@@ -203,6 +203,7 @@ namespace MazeSolver.Forms
             if (OpenFile.ShowDialog() != DialogResult.OK) return;
 
             Loader = new MazeLoader();
+            Loader.InitializeLoader();
 
             try
             {                                                
