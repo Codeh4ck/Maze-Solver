@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
+﻿using System.Drawing;
+using MazeSolver.MazeComponents.Interfaces;
 
 namespace MazeSolver.MazeComponents
 {
@@ -18,13 +16,26 @@ namespace MazeSolver.MazeComponents
         public Point ExitCoordinates { get; set; }
 
         /// <summary>
-        /// Creates a solver for the maze blueprint contained in a text file.
+        /// Used to validate the maze file and its contents.
         /// </summary>
-        /// <param name="fileName">The text file containing the maze blueprint.</param>
-        /// <returns>A <see cref="Solver"/> instance for the maze loaded.</returns>
-        public Solver LoadMazeFromFile(string fileName)
+        internal IMazeValidator MazeValidator { get; set; }
+
+        /// <summary>
+        /// Used to read the maze file and 
+        /// </summary>
+        internal IMazeReader MazeReader { get; set; }
+
+        /// <summary>
+        /// Initializes the loader - must be called after object creation.
+        /// </summary>
+        public void InitializeLoader()
         {
-            return new Solver(LoadCoordinatesFromFile(fileName));
+            /* Creating the validator and reader instances here, which is shockingly bad.
+             * This is done to prevent automatic instantiation of them in the constructor
+             * in order to unit-test the loader. This gruesome hack is not necessary
+             * if a DI framework is used. */
+            MazeValidator = new MazeValidator();
+            MazeReader = new MazeReader();
         }
 
         /// <summary>
@@ -34,42 +45,15 @@ namespace MazeSolver.MazeComponents
         /// <returns>A 2D integer array containing the matrix of the maze.</returns>
         public int[,] LoadCoordinatesFromFile(string fileName)
         {
-            if (!File.Exists(fileName))
-                throw new IOException("The maze file you are trying to load does not exist.");
+            MazeValidator.ValidateMazeFile(fileName);
 
-            if (!ValidateMazeFile(fileName))
-                throw new IOException("The maze file contains no entrance or exit point. Both points must be set.");
+            var parts = MazeReader.ReadMaze(fileName);
 
-            int Rows = 0;
-            int Columns = 0;
+            int[,] Maze = new int[parts.Rows, parts.Columns];
 
-            string Line = string.Empty;
-
-            List<string> Lines = new List<string>();
-
-            using (StreamReader Reader = new StreamReader(fileName))
+            for (int x = 0; x < parts.Rows; x++)
             {
-                while ((Line = Reader.ReadLine()) != null)
-                {
-                    string[] LineParts = Line.Split(',');
-
-                    if (Columns == 0)
-                        Columns = LineParts.Length;
-                    else
-                    {
-                        if (Columns != LineParts.Length)
-                            throw new Exception("The maze file appears to be corrupt. One of the lines has more/less elements than the previous one.");
-                    }
-                    Lines.Add(Line);
-                    Rows++;
-                }                
-            }
-
-            int[,] Maze = new int[Rows, Columns];
-
-            for (int x = 0; x < Rows; x++)
-            {
-                string[] LineParts = Lines[x].Split(',');
+                string[] LineParts = parts.Lines[x].Split(',');
                 for (int y = 0; y < LineParts.Length; y++)
                 {
                     int NodeStatus;
@@ -93,24 +77,6 @@ namespace MazeSolver.MazeComponents
             }
 
             return Maze;
-        }
-
-        /// <summary>
-        /// Checks whetherh the maze blueprint in the <see cref="filePath"/>
-        /// contains an entrance and an exit.
-        /// </summary>
-        /// <param name="filePath">The text file containing the maze blueprint.</param>
-        /// <returns>True if the maze blueprint contains an ex</returns>
-        private bool ValidateMazeFile(string filePath)
-        {
-            if (!File.Exists(filePath))
-                throw new IOException("The maze file you are trying to load does not exist.");
-
-            string MazeFileText = File.ReadAllText(filePath);
-
-
-            return MazeFileText.Contains(Settings.MAZE_ENTRANCE_CODE.ToString()) &&
-                MazeFileText.Contains(Settings.MAZE_EXIT_CODE.ToString());
         }
     }
 }

@@ -62,6 +62,11 @@
     </Compile>
     <Compile Include="MazeComponents\HelperTypes\MazeDirections.cs" />
     <Compile Include="MazeComponents\HelperTypes\MazeNodeStatus.cs" />
+    <Compile Include="MazeComponents\HelperTypes\MazeParts.cs" />
+    <Compile Include="MazeComponents\Interfaces\IMazeReader.cs" />
+    <Compile Include="MazeComponents\Interfaces\IMazeValidator.cs" />
+    <Compile Include="MazeComponents\MazeReader.cs" />
+    <Compile Include="MazeComponents\MazeValidator.cs" />
     <Compile Include="MazeComponents\Solver.cs" />
     <Compile Include="MazeComponents\MazeLoader.cs" />
     <Compile Include="Program.cs" />

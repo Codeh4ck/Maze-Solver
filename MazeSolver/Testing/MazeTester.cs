@@ -74,6 +74,7 @@ namespace MazeSolver.Testing
             try
             {
                 MazeLoader = new MazeLoader();
+                MazeLoader.InitializeLoader();
                 MazeMatrix = MazeLoader.LoadCoordinatesFromFile(TempFile);
             }
             catch (Exception ex)
